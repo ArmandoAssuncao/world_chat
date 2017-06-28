@@ -1,0 +1,3 @@
+rootProject.name = 'chat_by_location'
+
+include ':app'
