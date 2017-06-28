@@ -1,31 +1,48 @@
 import React, { Component, PropTypes } from 'react';
 import { StyleSheet } from 'react-native';
-import { View } from 'react-native';
-import { NavigationActions } from 'react-navigation';
-import { Container, Content, Icon } from 'native-base';
+import { Container, Content } from 'native-base';
+import { Row, Grid } from 'react-native-easy-grid';
+import MCIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import stylesGlobal from './../config/stylesGlobal';
 
-export default class Root extends Component {
+export default class SplashScreen extends Component {
+
+  static propTypes = {
+    navigation: PropTypes.shape({
+      navigate: PropTypes.func.isRequired,
+    }).isRequired,
+  };
 
   constructor(props) {
     super(props);
   }
 
   componentDidMount() {
+    setTimeout(() => {
+      this.props.navigation.navigate('Root');
+    }, 300);
   }
 
   render() {
     return (
-      <View style={styles.container}>
-      </View>
+      <Container>
+        <Content contentContainerStyle={{flex: 1}}>
+          <Grid>
+            <Row style={styles.container}>
+              <MCIcon name='map-marker-radius' style={{fontSize: 150, color: stylesGlobal.secondColor}}/>
+            </Row>
+          </Grid>
+        </Content>
+      </Container>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: stylesGlobal.secondColor,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: stylesGlobal.primaryColor,
   },
 });
