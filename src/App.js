@@ -19,6 +19,14 @@ const navReducer = (state = {...initialState, deep: 0}, action) => {
   nav: state.nav
 }))
 class AppWithNavigationState extends Component {
+
+  static propTypes = {
+    nav: PropTypes.shape({
+      deep: PropTypes.number.isRequired,
+    }).isRequired,
+    dispatch: PropTypes.func.isRequired,
+  }
+
   shouldCloseApp() {
     return (this.props.nav.deep <= 0);
   }
