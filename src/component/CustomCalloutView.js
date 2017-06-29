@@ -59,7 +59,6 @@ export default class CustomCalloutView extends Component {
   }
 
   render() {
-    console.log(this.state.person);
     return (
       <View style={styles.container}>
         <View style={styles.personContainer}>
