@@ -55,8 +55,8 @@ export default class MapPeople extends Component {
     });
   }
 
-  openChat = () => {
-    // this.props.navigation.navigate('Chat', user);
+  openChat = (person) => {
+    this.props.navigation.navigate('Chat', person);
   }
 
   render() {
@@ -79,7 +79,7 @@ export default class MapPeople extends Component {
                   key={i}
                   coordinate={person.latlng}
                 >
-                  <MapView.Callout tooltip={true} onPress={this.openChat}>
+                  <MapView.Callout tooltip={true} onPress={() => this.openChat(person)}>
                     <CustomCalloutView person={{...person}} navigation={this.props.navigation} />
                   </MapView.Callout>
                 </MapView.Marker>

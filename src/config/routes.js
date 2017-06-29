@@ -9,6 +9,7 @@ import MapPeopleContainer from '../containers/MapPeopleContainer';
 import ChatsContainer from '../containers/ChatsContainer';
 import SplashScreen from './../screens/SplashScreen';
 import About from './../screens/About';
+import Chat from './../screens/Chat';
 import Root from './../screens/Root';
 
 import DrawerContent from '../component/DrawerContent';
@@ -65,10 +66,13 @@ const NavStack = StackNavigator({
       headerLeft: <IconIon name='md-menu' size={30} color='#FFF' onPress={() => navigation.navigate('DrawerOpen')} />
     })
   },
+  Chat: {
+    screen: Chat,
+  },
   About: {
     screen: About,
     navigationOptions: {
-      title: 'Sobre'
+      title: 'About'
     }
   },
 }, {
