@@ -18,7 +18,12 @@ export default class MapPeople extends Component {
       navigate: PropTypes.func.isRequired,
     }).isRequired,
     people_list: PropTypes.array.isRequired,
+    coordinate: PropTypes.shape({
+      lat: PropTypes.string.isRequired,
+      lon: PropTypes.string.isRequired
+    }),
     loadPeopleList: PropTypes.func.isRequired,
+    saveCoordinate: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -26,6 +31,7 @@ export default class MapPeople extends Component {
 
     this.state = {
       people_list: [],
+      coordinate: null,
       origin: {
         latitude: 0,
         longitude: 0,
@@ -41,8 +47,9 @@ export default class MapPeople extends Component {
     requestPermissions();
 
     getLocation(navigator, 2000)
-    .then((coordinates) => {
-      // TODO: save coordinates in store
+    .then((coordinate) => {
+      console.warn('', coordinate);
+      this.props.saveCoordinate(coordinate);
     })
     .catch((error) => {
       console.warn('', error);
@@ -52,6 +59,7 @@ export default class MapPeople extends Component {
   componentWillReceiveProps(nextProps) {
     this.setState({
       people_list: nextProps.people_list || [],
+      coordinate: nextProps.coordinate || null,
     });
   }
 
