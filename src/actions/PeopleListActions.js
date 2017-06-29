@@ -15,6 +15,7 @@ export const loadPeopleList = () => (dispatch) => {
 const generatePerson = () => {
   const sizeImg = generateRandomInt(10, 40);
   return {
+    id: generateRandomInt(1, 50000).toString(),
     name: 'Clark Kent',
     age: generateRandomInt(20, 50),
     gender: 'Male',
