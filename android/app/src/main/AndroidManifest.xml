@@ -5,6 +5,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <uses-sdk
         android:minSdkVersion="16"
@@ -16,6 +17,11 @@
       android:label="@string/app_name"
       android:icon="@mipmap/ic_launcher"
       android:theme="@style/AppTheme">
+
+      <meta-data
+        android:name="com.google.android.geo.API_KEY"
+        android:value="AIzaSyCFeazFw5fr4bdp4CA9HNg1EgUnOMXPxXg" /> <!-- PUT YOUR GOOGLE MAPS API KEY -->
+
       <activity
         android:name=".MainActivity"
         android:label="@string/app_name"
