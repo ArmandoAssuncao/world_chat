@@ -4,7 +4,7 @@ import { Provider, connect } from 'react-redux';
 import { addNavigationHelpers } from 'react-navigation';
 
 import Routes from './config/routes';
-import createStore from './config/store';
+import createStore from './stores/store';
 
 const AppNavigator = Routes;
 
