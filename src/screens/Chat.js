@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { StyleSheet, View, ScrollView, Text, Dimensions } from 'react-native';
 import CacheableImage from 'react-native-cacheable-image';
+import IconIon from 'react-native-vector-icons/Ionicons';
 import { Container, Content, Item, Input, Icon } from 'native-base';
 import { Col, Grid } from 'react-native-easy-grid';
 
@@ -9,14 +10,27 @@ import StorageFactory from './../stores/StorageFactory';
 
 import MessageBox from './../component/MessageBox';
 
-const { width } = Dimensions.get('window');
-
 export default class Chat extends Component {
 
   static navigationOptions = ({navigation}) => {
     const person = navigation.state.params;
     return {
-      title: `Chat with ${person.name}`,
+      // title: `Chat with ${person.name}`,
+      headerLeft: (
+        <View style={{flex:1, flexDirection: 'row', alignItems: 'center', paddingLeft: 20}}>
+          <IconIon name='md-arrow-back' size={23} color='#FFF' onPress={() => navigation.goBack()} />
+          <View style={styles.header}>
+            <CacheableImage
+              key={person.picture_url}
+              style={styles.headerImagePicture}
+              // defaultSource={require('./../imgs/picture.png')}
+              // source={{ uri: this._person.picture_url }}
+              defaultSource={parseInt(person.picture_url)} // To test
+            />
+            <Text style={styles.headerName}>{person.name}</Text>
+          </View>
+        </View>
+      )
     };
   }
 
@@ -122,16 +136,6 @@ export default class Chat extends Component {
         <Content contentContainerStyle={{flex: 1}}>
           <Grid>
             <Col style={styles.container}>
-              <View style={styles.header}>
-                <CacheableImage
-                  key={this._person.picture_url}
-                  style={styles.headerImagePicture}
-                  // defaultSource={require('./../imgs/picture.png')}
-                  // source={{ uri: this._person.picture_url }}
-                  defaultSource={parseInt(this._person.picture_url)} // To test
-                />
-                <Text style={styles.headerName}>{this._person.name}</Text>
-              </View>
               <CacheableImage
                 style={{flex: 1}}
                 defaultSource={require('./../imgs/bg-chat.jpg')}
@@ -171,23 +175,18 @@ const styles = StyleSheet.create({
   header: {
     alignItems: 'center',
     flexDirection: 'row',
-    height: 60,
-    width: width,
-    borderWidth: 1,
-    borderColor: 'black',
-    backgroundColor: stylesGlobal.primaryLightColor,
   },
   headerImagePicture: {
-    height: 50,
-    width: 50,
+    height: 45,
+    width: 45,
     borderRadius: 50,
-    marginLeft: 20,
+    marginLeft: 10,
   },
   headerName: {
-    fontSize: 22,
+    fontSize: 18,
     fontWeight: 'bold',
     color: '#FFF',
-    marginLeft: 20,
+    marginLeft: 10,
   },
   messagesContainer: {
     flex: 1,
