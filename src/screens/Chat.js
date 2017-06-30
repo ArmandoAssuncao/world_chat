@@ -53,6 +53,8 @@ export default class Chat extends Component {
       this.setState({messages: messages || []});
     })
     .catch(error => console.error(error));
+
+    this.generateExampleMessages(); // To test;
   }
 
   sendMessage = (text) => {
@@ -86,6 +88,32 @@ export default class Chat extends Component {
   clearInput = () => {
     this._messageText = '';
     this._inputText._root.clear();
+  }
+
+  // To test
+  generateExampleMessages = () => {
+    let count = 0;
+    const texts = ['Ola', 'Tudo bom?', 'Eu estou ótimo.'];
+    const idInterval = setInterval(() => {
+      this.personSendMessage(texts[count]);
+      count++;
+      if(count === 3) clearInterval(idInterval);
+    }, 3000);
+  }
+  // To test
+  personSendMessage = (text) => {
+    const currentDate = new Date();
+    const time = `${currentDate.getHours()}:${currentDate.getMinutes()}`;
+    const message = {from: 'you', text: text, time: time};
+
+    let messages = this.state.messages;
+    messages.push(message);
+    this.setState({ messages: messages });
+
+    StorageFactory.addMessage(this._person.id, message);
+    // save person when send first message
+    if(messages.length === 1) this.savePerson(this._person);
+    else this.props.loadChatPersonList();
   }
 
   render() {
