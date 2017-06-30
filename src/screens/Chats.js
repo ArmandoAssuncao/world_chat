@@ -1,10 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import { StyleSheet } from 'react-native';
-import { Container, Content } from 'native-base';
-import { Row, Grid } from 'react-native-easy-grid';
-import MCIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { Container, Content, Text, Body, List, ListItem, Left, Right, Thumbnail } from 'native-base';
 
-import stylesGlobal from './../config/stylesGlobal';
+import StorageFactory from './../stores/StorageFactory';
 
 export default class Chats extends Component {
 
@@ -12,33 +9,94 @@ export default class Chats extends Component {
     navigation: PropTypes.shape({
       navigate: PropTypes.func.isRequired,
     }).isRequired,
-    chat_list: PropTypes.array.isRequired,
+    loadChatPersonList: PropTypes.func.isRequired,
+    chat_person_list: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired,
+        age: PropTypes.number,
+        gender: PropTypes.string,
+        picture_url: PropTypes.string,
+      })
+    ).isRequired,
   };
 
   constructor(props) {
     super(props);
 
     this.state = {
-      chat_list: [],
+      person_list: [],
     };
   }
 
-  componentDidMount() { }
+  componentDidMount() {
+    this.props.loadChatPersonList();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.chat_person_list) {
+      const promiseList = nextProps.chat_person_list.map((person) => {
+        return StorageFactory.getMessages(person.id)
+        .then(messages => {
+          person.messages = messages || [];
+          return person;
+        })
+        .catch(error => console.error(error));
+      });
+
+      Promise.all(promiseList)
+      .then(results => {
+        this.setState({person_list: results});
+      })
+      .catch(error => console.error(error));
+    }
+  }
+
+  openChat = (person) => {
+    this.props.navigation.navigate('Chat', person);
+  }
+
+  sanitizeMessageText = (text) => {
+    const maxSize = 30;
+    return text.length <= maxSize ? text : text.substring(0,maxSize-4) + ' ...';
+  }
 
   render() {
     return (
       <Container>
-        <Content contentContainerStyle={{flex: 1}}>
-
+        <Content style={{backgroundColor: '#FFF'}}>
+          <List>
+            {this.state.person_list.map((person, i) => (
+              <ListItem avatar button
+                key={i}
+                style={{backgroundColor: '#FFF', paddingVertical: 5, paddingLeft: 10, marginLeft: 0}}
+                onPress={() => {this.openChat(person);}}
+              >
+                <Left>
+                  <Thumbnail source={{ uri: person.picture_url }} style={{borderColor: '#CCC', borderWidth:1}} />
+                </Left>
+                <Body>
+                  <Text>{person.name}</Text>
+                  <Text note>
+                    {(person.messages.length && person.messages[person.messages.length-1])
+                      ?
+                      this.sanitizeMessageText(person.messages[person.messages.length-1].text) : ' '
+                    }
+                  </Text>
+                </Body>
+                <Right>
+                  <Text note>{(person.messages.length && person.messages[person.messages.length-1])
+                      ?
+                      person.messages[person.messages.length-1].time : ' '
+                    }
+                  </Text>
+                </Right>
+              </ListItem>
+            ))}
+          </List>
         </Content>
       </Container>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
