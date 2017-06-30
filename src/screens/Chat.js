@@ -96,6 +96,7 @@ export default class Chat extends Component {
             <Col style={styles.container}>
               <View style={styles.header}>
                 <CacheableImage
+                  key={this._person.picture_url}
                   style={styles.headerImagePicture}
                   defaultSource={require('./../imgs/picture.png')}
                   source={{ uri: this._person.picture_url }}
@@ -140,7 +141,6 @@ const styles = StyleSheet.create({
   },
   header: {
     alignItems: 'center',
-    justifyContent: 'space-around',
     flexDirection: 'row',
     height: 60,
     width: width,
@@ -152,11 +152,13 @@ const styles = StyleSheet.create({
     height: 50,
     width: 50,
     borderRadius: 50,
+    marginLeft: 20,
   },
   headerName: {
     fontSize: 22,
     fontWeight: 'bold',
     color: '#FFF',
+    marginLeft: 20,
   },
   messagesContainer: {
     flex: 1,
