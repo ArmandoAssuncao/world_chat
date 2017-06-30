@@ -19,8 +19,8 @@ export default class MapPeople extends Component {
     }).isRequired,
     people_list: PropTypes.array.isRequired,
     coordinate: PropTypes.shape({
-      lat: PropTypes.string.isRequired,
-      lon: PropTypes.string.isRequired
+      lat: PropTypes.number.isRequired,
+      lon: PropTypes.number.isRequired
     }),
     loadPeopleList: PropTypes.func.isRequired,
     saveCoordinate: PropTypes.func.isRequired,
@@ -48,7 +48,6 @@ export default class MapPeople extends Component {
 
     getLocation(navigator, 2000)
     .then((coordinate) => {
-      console.warn('', coordinate);
       this.props.saveCoordinate(coordinate);
     })
     .catch((error) => {

@@ -63,6 +63,8 @@ export default class Chat extends Component {
     let messages = this.state.messages;
     messages.push(message);
     this.setState({ messages: messages });
+
+    StorageFactory.addMessage(this._person.id, message);
   }
 
   clearInput = () => {
