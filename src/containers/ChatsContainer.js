@@ -1,14 +1,14 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { loadChatList } from '../actions/ChatListActions';
+import { loadChatPersonList } from '../actions/ChatListActions';
 import Chats from '../screens/Chats';
 
 const mapStateToProps = state => ({
-  chat_list: state.chat_list,
+  chat_person_list: state.chat_person_list,
 });
 const mapDispatchToProps = dispatch => (
   bindActionCreators({
-    loadChatList,
+    loadChatPersonList,
   }, dispatch)
 );
 

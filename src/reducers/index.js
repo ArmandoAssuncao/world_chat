@@ -8,7 +8,7 @@ export default function getRootReducer(navReducer) {
   return combineReducers({
     nav: navReducer,
     people_list: peopleReducer,
-    chat_list: chatsReducer,
+    chat_person_list: chatsReducer,
     coordinate: coordinateReducer,
   });
 }

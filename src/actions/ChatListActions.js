@@ -1,5 +1,5 @@
-import { LOAD_CHAT_LIST, LOAD_CHAT_LIST_ERROR } from './actionTypes';
+import { LOAD_CHAT_PERSON_LIST, LOAD_CHAT_PERSON_LIST_ERROR } from './actionTypes';
 
-export const loadChatList = () => (dispatch) => {
+export const loadChatPersonList = () => (dispatch) => {
 
 };
