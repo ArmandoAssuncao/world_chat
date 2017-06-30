@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "moment": "=2.18.1",
-    "native-base": "=2.1.4",
+    "native-base": "=2.1.5",
     "react": "=16.0.0-alpha.6",
     "react-native": "=0.44.0",
     "react-native-fs": "^2.3.2",
