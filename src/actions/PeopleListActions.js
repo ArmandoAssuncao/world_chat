@@ -31,6 +31,14 @@ const generatePerson = () => {
 // To test
 const generateLeague = () => {
   const names = ['batman', 'Hawkwoman', 'Superman', 'Black Canary', 'Flash', 'Wonder Woman'];
+  const descriptions = [
+    'Morcegos me assustam. Está na hora de meus inimigos compartilharem desse terror',
+    'Quem na vida prefere seguir por atalhos jamais aproveita bem o caminho.',
+    'Sinto como se vivesse em um mundo feito de papelão',
+    'Aproveite o dia de hoje e nada espere do dia seguinte.',
+    'O raio não me deu apenas velocidade, também me deu amigos.',
+    'É o nosso dever sagrado defender o mundo e é isso que eu vou fazer.'
+  ];
   const images_url = [
     require('./../imgs/picture_1.jpg'),
     require('./../imgs/picture_2.jpg'),
@@ -39,13 +47,14 @@ const generateLeague = () => {
     require('./../imgs/picture_5.jpg'),
     require('./../imgs/picture_6.jpg'),
   ];
-  const id = generateRandomInt(1, 6).toString();
+  const id = generateRandomInt(0, 6);
+
   return {
-    id: id,
+    id: id.toString(),
     name: names[id],
     age: generateRandomInt(20, 50),
-    gender: id%2 === 0 ? 'Female' : 'Male',
-    description: 'This is a description',
+    gender: id%2 === 0 ? 'Male' : 'Female',
+    description: descriptions[id],
     picture_url: images_url[id].toString(),
     latlng: {
       latitude: generateRandomInt(-90, 90),
