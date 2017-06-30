@@ -17,8 +17,8 @@ export default class Chat extends Component {
     return {
       // title: `Chat with ${person.name}`,
       headerLeft: (
-        <View style={{flex:1, flexDirection: 'row', alignItems: 'center', paddingLeft: 20}}>
-          <IconIon name='md-arrow-back' size={23} color='#FFF' onPress={() => navigation.goBack()} />
+        <View style={{flex:1, flexDirection: 'row', alignItems: 'center'}}>
+          <IconIon name='md-arrow-back' size={24} color='#FFF' style={{padding: 5, paddingLeft: 20}} onPress={() => navigation.goBack()} />
           <View style={styles.header}>
             <CacheableImage
               key={person.picture_url}
@@ -65,10 +65,10 @@ export default class Chat extends Component {
     StorageFactory.getMessages(this._person.id)
     .then(messages => {
       this.setState({messages: messages || []});
+
+      if(!messages) this.generateExampleMessages(); // To test;
     })
     .catch(error => console.error(error));
-
-    this.generateExampleMessages(); // To test;
   }
 
   sendMessage = (text) => {
@@ -107,7 +107,7 @@ export default class Chat extends Component {
   // To test
   generateExampleMessages = () => {
     let count = 0;
-    const texts = ['Ola', 'Tudo bom?', 'Eu estou ótimo.'];
+    const texts = ['Ola', 'Tudo bom?', 'Eu estou super bem.'];
     const idInterval = setInterval(() => {
       this.personSendMessage(texts[count]);
       count++;
