@@ -7,9 +7,9 @@ import stylesGlobal from './../config/stylesGlobal';
 
 import MapPeopleContainer from '../containers/MapPeopleContainer';
 import ChatsContainer from '../containers/ChatsContainer';
+import ChatContainer from '../containers/ChatContainer';
 import SplashScreen from './../screens/SplashScreen';
 import About from './../screens/About';
-import Chat from './../screens/Chat';
 import Root from './../screens/Root';
 
 import DrawerContent from '../component/DrawerContent';
@@ -67,7 +67,7 @@ const NavStack = StackNavigator({
     })
   },
   Chat: {
-    screen: Chat,
+    screen: ChatContainer,
   },
   About: {
     screen: About,
