@@ -58,7 +58,9 @@ export default class Chat extends Component {
     if(!text) return;
     this.clearInput();
 
-    const message = {from: 'me', text: text};
+    const currentDate = new Date();
+    const time = `${currentDate.getHours()}:${currentDate.getMinutes()}`;
+    const message = {from: 'me', text: text, time: time};
 
     let messages = this.state.messages;
     messages.push(message);
@@ -121,7 +123,6 @@ export default class Chat extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: stylesGlobal.secondColor,
   },
   header: {
     alignItems: 'center',
@@ -136,7 +137,7 @@ const styles = StyleSheet.create({
   headerImagePicture: {
     height: 50,
     width: 50,
-    borderRadius: 5,
+    borderRadius: 50,
   },
   headerName: {
     fontSize: 22,
