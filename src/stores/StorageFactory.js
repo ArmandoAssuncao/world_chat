@@ -41,7 +41,7 @@ export default class StorageFactory {
     return StorageFactory._removeItem(`${MESSAGES}_${friendId}`);
   }
   static async addMessage(friendId, value) {
-    let messages = (await StorageFactory.getMessages()) || [];
+    let messages = (await StorageFactory.getMessages(friendId)) || [];
     messages.push(value);
     StorageFactory._setItem(`${MESSAGES}_${friendId}`, messages);
     return true;
