@@ -4,7 +4,7 @@ import { generateRandomInt } from './../utils/utils';
 export const loadPeopleList = () => (dispatch) => {
   // Emulate response data of a Request
   let response = [];
-  for(let i = 0; i < 50; i++) {
+  for(let i = 0; i < 20; i++) {
     response.push(generateLeague());
   }
 
