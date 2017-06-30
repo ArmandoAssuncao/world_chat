@@ -65,8 +65,9 @@ export default class CustomCalloutView extends Component {
           <CacheableImage
             key={this.state.person.picture_url}
             style={styles.imagePicture}
-            defaultSource={require('./../imgs/picture.png')}
-            source={{ uri: this.state.person.picture_url }}
+            // defaultSource={require('./../imgs/picture.png')}
+            // source={{ uri: this.state.person.picture_url }}
+            defaultSource={parseInt(this.state.person.picture_url)} // To test
           />
           <View style={styles.infosContainer}>
             <Text style={styles.name}>{this.state.person.name}</Text>
@@ -103,7 +104,7 @@ const styles = StyleSheet.create({
   imagePicture: {
     height: 60,
     width: 60,
-    borderColor: stylesGlobal.secondColor,
+    borderColor: '#CCC',
     borderWidth: 1,
   },
   infosContainer: {

@@ -98,8 +98,9 @@ export default class Chat extends Component {
                 <CacheableImage
                   key={this._person.picture_url}
                   style={styles.headerImagePicture}
-                  defaultSource={require('./../imgs/picture.png')}
-                  source={{ uri: this._person.picture_url }}
+                  // defaultSource={require('./../imgs/picture.png')}
+                  // source={{ uri: this._person.picture_url }}
+                  defaultSource={parseInt(this._person.picture_url)} // To test
                 />
                 <Text style={styles.headerName}>{this._person.name}</Text>
               </View>

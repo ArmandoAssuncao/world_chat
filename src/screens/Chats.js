@@ -74,7 +74,11 @@ export default class Chats extends Component {
                 onPress={() => {this.openChat(person);}}
               >
                 <Left>
-                  <Thumbnail source={{ uri: person.picture_url }} style={{borderColor: '#CCC', borderWidth:1}} />
+                  <Thumbnail
+                  style={{borderColor: '#CCC', borderWidth:1}}
+                  // source={{ uri: person.picture_url }}
+                  source={parseInt(person.picture_url)} // To test
+                />
                 </Left>
                 <Body>
                   <Text>{person.name}</Text>
