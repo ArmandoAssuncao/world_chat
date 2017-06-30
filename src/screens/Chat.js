@@ -34,6 +34,7 @@ export default class Chat extends Component {
         }).isRequired,
       }).isRequired,
     }).isRequired,
+    loadChatPersonList: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -67,6 +68,19 @@ export default class Chat extends Component {
     this.setState({ messages: messages });
 
     StorageFactory.addMessage(this._person.id, message);
+
+    // save person when send first message
+    if(messages.length === 1){
+      this.savePerson(this._person);
+    }
+    else {
+      this.props.loadChatPersonList();
+    }
+  }
+
+  savePerson = (person) => {
+    StorageFactory.addFriend(person)
+    .then(() => this.props.loadChatPersonList());
   }
 
   clearInput = () => {
