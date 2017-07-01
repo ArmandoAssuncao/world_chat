@@ -16,11 +16,11 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React Native!"
 
-@interface chat_by_locationTests : XCTestCase
+@interface worldchatTests : XCTestCase
 
 @end
 
-@implementation chat_by_locationTests
+@implementation worldchatTests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL(^)(UIView *view))test
 {

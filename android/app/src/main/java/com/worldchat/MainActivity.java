@@ -1,4 +1,4 @@
-package com.chat_by_location;
+package com.worldchat;
 
 import com.facebook.react.ReactActivity;
 
@@ -10,6 +10,6 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
-        return "chat_by_location";
+        return "worldchat";
     }
 }

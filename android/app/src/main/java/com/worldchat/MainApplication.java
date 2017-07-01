@@ -1,4 +1,4 @@
-package com.chat_by_location;
+package com.worldchat;
 
 import android.app.Application;
 
