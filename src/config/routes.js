@@ -10,6 +10,7 @@ import ChatsContainer from '../containers/ChatsContainer';
 import ChatContainer from '../containers/ChatContainer';
 import SplashScreen from './../screens/SplashScreen';
 import About from './../screens/About';
+import FormUser from './../screens/FormUser';
 import Root from './../screens/Root';
 
 import DrawerContent from '../component/DrawerContent';
@@ -75,6 +76,9 @@ const NavStack = StackNavigator({
       title: 'About'
     }
   },
+  FormUser: {
+    screen: FormUser,
+  },
 }, {
   initialRouteName: 'HomeTab',
   navigationOptions: ()=>({
@@ -86,6 +90,9 @@ const NavStack = StackNavigator({
 const DrawerRoutes = DrawerNavigator({
   NavStack: {
     screen: NavStack,
+  },
+  FormUser: {
+    screen: FormUser,
   },
   About: {
     screen: About,
