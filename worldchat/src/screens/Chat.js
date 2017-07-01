@@ -133,7 +133,7 @@ export default class Chat extends Component {
   render() {
     return (
       <Container>
-        <Content contentContainerStyle={{flex: 1}}>
+        <Content contentContainerStyle={{flex: 1}} keyboardShouldPersistTaps='always'>
           <Grid>
             <Col style={styles.container}>
               <CacheableImage

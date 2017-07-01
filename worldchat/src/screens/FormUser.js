@@ -113,7 +113,7 @@ export default class FormUser extends Component {
   render() {
     return (
       <Container>
-        <Content style={{backgroundColor: '#FFF', padding: 10}}>
+        <Content style={{backgroundColor: '#FFF', padding: 10}} keyboardShouldPersistTaps='always'>
           <Grid style={{alignItems: 'center'}}>
             <Row>
               <H3>Enter your informations</H3>
