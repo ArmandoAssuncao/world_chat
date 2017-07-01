@@ -2,6 +2,7 @@ import { AsyncStorage } from 'react-native';
 
 const FRIENDS = 'FRIENDS';
 const MESSAGES = 'MESSAGES';
+const USER = 'USER';
 
 export default class StorageFactory {
 
@@ -13,6 +14,16 @@ export default class StorageFactory {
   }
   static _removeItem(itemName) {
     return AsyncStorage.removeItem(itemName);
+  }
+
+  static async getUser(){
+    return await StorageFactory._getItem(USER);
+  }
+  static setUser(value){
+    return StorageFactory._setItem(USER, value);
+  }
+  static removeUser(){
+    return StorageFactory._removeItem(USER);
   }
 
   static async getFriends() {
