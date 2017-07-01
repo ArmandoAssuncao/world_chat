@@ -8,12 +8,12 @@ import stylesGlobal from './../config/stylesGlobal';
 import MapPeopleContainer from '../containers/MapPeopleContainer';
 import ChatsContainer from '../containers/ChatsContainer';
 import ChatContainer from '../containers/ChatContainer';
+import FormUserContainer from './../containers/FormUserContainer';
 import SplashScreen from './../screens/SplashScreen';
 import About from './../screens/About';
-import FormUser from './../screens/FormUser';
 import Root from './../screens/Root';
 
-import DrawerContent from '../component/DrawerContent';
+import DrawerContainer from '../containers/DrawerContainer';
 
 const HomeNavTab = TabNavigator({
   MapPeople: {
@@ -77,7 +77,7 @@ const NavStack = StackNavigator({
     }
   },
   FormUser: {
-    screen: FormUser,
+    screen: FormUserContainer,
   },
 }, {
   initialRouteName: 'HomeTab',
@@ -92,7 +92,7 @@ const DrawerRoutes = DrawerNavigator({
     screen: NavStack,
   },
   FormUser: {
-    screen: FormUser,
+    screen: FormUserContainer,
   },
   About: {
     screen: About,
@@ -106,7 +106,7 @@ const DrawerRoutes = DrawerNavigator({
       marginVertical: 0,
     }
   },
-  contentComponent: props => <DrawerContent navigation={props.navigation} items={props.items} />
+  contentComponent: props => <DrawerContainer navigation={props.navigation} items={props.items} />
 });
 
 const RootNav = StackNavigator({

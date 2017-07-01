@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { } from 'react-native';
-import { Container, Content, Form, Item, Input, Picker, Text, Button, Icon } from 'native-base';
+import { Container, Content, Form, Item, Input, Picker, Text, Button, Icon, H3 } from 'native-base';
+import { Row, Grid } from 'react-native-easy-grid';
 
 import { resetNavigateTo } from './../utils/utils';
 import StorageFactory from './../stores/StorageFactory';
@@ -26,6 +27,7 @@ export default class FormUser extends Component {
     navigation: PropTypes.shape({
       navigate: PropTypes.func.isRequired,
     }).isRequired,
+    loadUser: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -74,6 +76,7 @@ export default class FormUser extends Component {
     if(error) return;
 
     StorageFactory.setUser(user);
+    this.props.loadUser(user);
     resetNavigateTo('HomeTab', this.props.navigation);
   }
 
@@ -81,6 +84,11 @@ export default class FormUser extends Component {
     return (
       <Container>
         <Content style={{backgroundColor: '#FFF', padding: 10}}>
+          <Grid style={{alignItems: 'center'}}>
+            <Row>
+              <H3>Enter your informations</H3>
+            </Row>
+          </Grid>
           <Form>
             <Item underline>
               <Input placeholder='Name' onChangeText={this.onValueChangeName} />
