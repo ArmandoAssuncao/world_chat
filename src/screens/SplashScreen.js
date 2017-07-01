@@ -4,6 +4,7 @@ import { Container, Content } from 'native-base';
 import { Row, Grid } from 'react-native-easy-grid';
 import MCIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
+import { resetNavigateTo } from './../utils/utils';
 import stylesGlobal from './../config/stylesGlobal';
 
 export default class SplashScreen extends Component {
@@ -20,7 +21,7 @@ export default class SplashScreen extends Component {
 
   componentDidMount() {
     setTimeout(() => {
-      this.props.navigation.navigate('Root');
+      resetNavigateTo('Root', this.props.navigation);
     }, 300);
   }
 
