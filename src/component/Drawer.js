@@ -50,7 +50,7 @@ export default class Drawer extends Component {
     return (
       <ScrollView style={styles.container}>
         <View style={styles.header}>
-          <Text style={styles.headerText}>Ola, {this.state.user.name}  :-)</Text>
+          <Text style={styles.headerText}>Hi, {this.state.user.name}  :-)</Text>
         </View>
         <View>
           {
