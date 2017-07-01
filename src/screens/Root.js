@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 
 import { resetNavigateTo } from './../utils/utils';
 
+import StorageFactory from './../stores/StorageFactory';
+
 export default class Root extends Component {
 
   static propTypes = {
@@ -16,7 +18,15 @@ export default class Root extends Component {
   }
 
   componentDidMount() {
-    resetNavigateTo('Home', this.props.navigation);
+    StorageFactory.getUser()
+    .then(user => {
+      if(!user) {
+        this.props.navigation.navigate('FormUser', {parentName: 'Root'});
+      }
+      else {
+        resetNavigateTo('Home', this.props.navigation);
+      }
+    });
   }
 
   render() {
