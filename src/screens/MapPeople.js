@@ -38,6 +38,8 @@ export default class MapPeople extends Component {
         latitudeDelta: 0.0922,
         longitudeDelta: 0.0922 * (width / height) * 1000,
       },
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height,
     };
   }
 
@@ -62,19 +64,26 @@ export default class MapPeople extends Component {
     });
   }
 
+  _onLayout = (e) => {
+    this.setState({
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height,
+    });
+  }
+
   openChat = (person) => {
     this.props.navigation.navigate('Chat', person);
   }
 
   render() {
     return (
-      <Container>
+      <Container onLayout={this._onLayout}>
         <Content contentContainerStyle={{flex: 1}}>
         <Grid>
           <Col style={styles.container}>
             <MapView
               provider={PROVIDER_GOOGLE}
-              style={styles.map}
+              style={{width: this.state.width, height: this.state.height}}
               scrollEnabled={true}
               zoomEnabled={true}
               pitchEnabled={true}
@@ -106,7 +115,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   map: {
-    height: height,
-    width: width,
+    // height: height,
+    // width: width,
   },
 });
