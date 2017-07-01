@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { StyleSheet } from 'react-native';
-import { Container, Content } from 'native-base';
-import { Row, Grid } from 'react-native-easy-grid';
+import { Container, Content, H1 } from 'native-base';
+import { Col, Grid } from 'react-native-easy-grid';
 import MCIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { resetNavigateTo } from './../utils/utils';
@@ -22,7 +22,7 @@ export default class SplashScreen extends Component {
   componentDidMount() {
     setTimeout(() => {
       resetNavigateTo('Root', this.props.navigation);
-    }, 300);
+    }, 800);
   }
 
   render() {
@@ -30,9 +30,10 @@ export default class SplashScreen extends Component {
       <Container>
         <Content contentContainerStyle={{flex: 1}}>
           <Grid>
-            <Row style={styles.container}>
+            <Col style={styles.container}>
               <MCIcon name='map-marker-radius' style={{fontSize: 150, color: stylesGlobal.secondColor}}/>
-            </Row>
+              <H1 style={{color: stylesGlobal.secondColor}}>World Chat</H1>
+            </Col>
           </Grid>
         </Content>
       </Container>
