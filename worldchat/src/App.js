@@ -2,13 +2,14 @@ import React, { Component, PropTypes } from 'react';
 import { BackHandler } from 'react-native';
 import { Provider, connect } from 'react-redux';
 import { addNavigationHelpers } from 'react-navigation';
+import SplashScreen from 'react-native-splash-screen';
 
 import Routes from './config/routes';
 import createStore from './stores/store';
 
 const AppNavigator = Routes;
 
-const initialState = AppNavigator.router.getStateForAction(AppNavigator.router.getActionForPathAndParams('Splash'));
+const initialState = AppNavigator.router.getStateForAction(AppNavigator.router.getActionForPathAndParams('Root'));
 
 const navReducer = (state = {...initialState, deep: 0}, action) => {
   const nextState = AppNavigator.router.getStateForAction(action, state);
@@ -39,6 +40,8 @@ class AppWithNavigationState extends Component {
       });
       return true;
     });
+
+    SplashScreen.hide();
   }
 
   componentWillUnmount() {

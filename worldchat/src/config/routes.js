@@ -9,7 +9,6 @@ import MapPeopleContainer from '../containers/MapPeopleContainer';
 import ChatsContainer from '../containers/ChatsContainer';
 import ChatContainer from '../containers/ChatContainer';
 import FormUserContainer from './../containers/FormUserContainer';
-import SplashScreen from './../screens/SplashScreen';
 import About from './../screens/About';
 import Root from './../screens/Root';
 
@@ -126,20 +125,6 @@ const RootNav = StackNavigator({
   }
 });
 
-const SplashScreenNav = StackNavigator({
-  Splash: {
-    screen: SplashScreen,
-    navigationOptions: {
-      title: 'Splash Screen',
-      header: null,
-    }
-  },
-  Root: {
-    screen: RootNav,
-    header: null,
-  },
-});
-
 const StackHeaderStyle = StyleSheet.create({
   headerStyle: {
     backgroundColor: stylesGlobal.primaryColor,
@@ -151,4 +136,4 @@ const StackHeaderStyle = StyleSheet.create({
   }
 });
 
-export default SplashScreenNav;
+export default RootNav;
