@@ -11,7 +11,7 @@ const AppNavigator = Routes;
 
 const initialState = AppNavigator.router.getStateForAction(AppNavigator.router.getActionForPathAndParams('Root'));
 
-const navReducer = (state = {...initialState, deep: 0}, action) => {
+const navReducer = (state = initialState, action) => {
   const nextState = AppNavigator.router.getStateForAction(action, state);
   return nextState || state;
 };
@@ -22,25 +22,16 @@ const navReducer = (state = {...initialState, deep: 0}, action) => {
 class AppWithNavigationState extends Component {
 
   static propTypes = {
-    nav: PropTypes.shape({
-      deep: PropTypes.number.isRequired,
-    }).isRequired,
+    nav: PropTypes.shape().isRequired,
     dispatch: PropTypes.func.isRequired,
   }
 
-  shouldCloseApp() {
-    return (this.props.nav.deep <= 0);
+  constructor(props) {
+    super(props);
+    BackHandler.addEventListener('backPress', this.backAction);
   }
 
   componentDidMount() {
-    BackHandler.addEventListener('backPress', () => {
-      if (this.shouldCloseApp()) return false;
-      this.props.dispatch({
-        type: 'Navigation/BACK'
-      });
-      return true;
-    });
-
     SplashScreen.hide();
   }
 
@@ -48,9 +39,16 @@ class AppWithNavigationState extends Component {
     BackHandler.removeEventListener('backPress');
   }
 
+  backAction = () => {
+    this.navigator.props.navigation.goBack();
+    return true;
+  };
+
+
   render() {
     return (
       <AppNavigator
+        ref={ (ref) => this.navigator = ref }
         navigation={addNavigationHelpers({
           dispatch: this.props.dispatch,
           state: this.props.nav
