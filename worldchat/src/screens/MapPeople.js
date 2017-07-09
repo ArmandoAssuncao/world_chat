@@ -92,7 +92,7 @@ export default class MapPeople extends Component {
               initialRegion={this.state.origin}
             >
               {this.state.people_list.map((person, i) => (
-                <MapView.Marker key={i} coordinate={person.latlng}>
+                <MapView.Marker key={i} anchor={{x:0.5, y:-0.5}} coordinate={person.latlng}>
                   <CustomMarkerView person_picture_url={person.picture_url} />
                   <MapView.Callout tooltip={true} onPress={() => this.openChat(person)}>
                     <CustomCalloutView person={{...person}} navigation={this.props.navigation} />
