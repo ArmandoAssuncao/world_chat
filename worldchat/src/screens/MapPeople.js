@@ -5,6 +5,7 @@ import { Col, Grid } from 'react-native-easy-grid';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
 import CustomCalloutView from './../component/CustomCalloutView';
+import CustomMarkerView from './../component/CustomMarkerView';
 
 import { getLocation, requestPermissions } from '../utils/utils';
 import stylesGlobal from './../config/stylesGlobal';
@@ -91,10 +92,8 @@ export default class MapPeople extends Component {
               initialRegion={this.state.origin}
             >
               {this.state.people_list.map((person, i) => (
-                <MapView.Marker
-                  key={i}
-                  coordinate={person.latlng}
-                >
+                <MapView.Marker key={i} coordinate={person.latlng}>
+                  <CustomMarkerView person_picture_url={person.picture_url} />
                   <MapView.Callout tooltip={true} onPress={() => this.openChat(person)}>
                     <CustomCalloutView person={{...person}} navigation={this.props.navigation} />
                   </MapView.Callout>
