@@ -52,28 +52,30 @@ export default class CustomCalloutView extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <View style={styles.personContainer}>
-          <View style={styles.personImageContainer}>
-            <CacheableImage
-              key={this.state.person.picture_url}
-              style={styles.imagePicture}
-              // defaultSource={require('./../imgs/picture.png')}
-              // source={{ uri: this.state.person.picture_url }}
-              defaultSource={parseInt(this.state.person.picture_url)} // To test
-            />
-          </View>
-          <View style={styles.infosContainer}>
-            <Text style={styles.name}>{this.state.person.name}</Text>
-            <View style={{flexDirection: 'row', justifyContent: 'space-between', marginTop: 5}}>
-              <Text style={styles.age}>{this.state.person.age} years</Text>
-              <Text style={styles.gender}>{this.state.person.gender}</Text>
+      <View style={styles.containerShadow}>
+        <View style={styles.container}>
+          <View style={styles.personContainer}>
+            <View style={styles.personImageContainer}>
+              <CacheableImage
+                key={this.state.person.picture_url}
+                style={styles.imagePicture}
+                // defaultSource={require('./../imgs/picture.png')}
+                // source={{ uri: this.state.person.picture_url }}
+                defaultSource={parseInt(this.state.person.picture_url)} // To test
+              />
             </View>
-            <Text ellipsizeMode={Text.tail} numberOfLines={5} style={styles.description}>{this.state.person.description}</Text>
+            <View style={styles.infosContainer}>
+              <Text style={styles.name}>{this.state.person.name}</Text>
+              <View style={{flexDirection: 'row', justifyContent: 'space-between', marginTop: 5}}>
+                <Text style={styles.age}>{this.state.person.age} years</Text>
+                <Text style={styles.gender}>{this.state.person.gender}</Text>
+              </View>
+              <Text ellipsizeMode={Text.tail} numberOfLines={5} style={styles.description}>{this.state.person.description}</Text>
+            </View>
           </View>
-        </View>
-        <View style={styles.tip}>
-          <Text style={styles.tipText}>- Click to open chat -</Text>
+          <View style={styles.tip}>
+            <Text style={styles.tipText}>- Click to open chat -</Text>
+          </View>
         </View>
       </View>
     );
@@ -81,10 +83,17 @@ export default class CustomCalloutView extends Component {
 }
 
 const styles = StyleSheet.create({
+  containerShadow: {
+    borderRadius: 5,
+    marginBottom: 3,
+    backgroundColor: 'rgba(0,0,0,0.4)',
+    paddingBottom: 6,
+    paddingRight: 6,
+    borderTopRightRadius: 25,
+    borderBottomLeftRadius: 25,
+  },
   container: {
     flex: 1,
-    marginBottom: 3,
-    paddingBottom: 0,
     backgroundColor: stylesGlobal.primaryColor,
     borderColor: stylesGlobal.primaryLightColor,
     borderWidth: 1,
@@ -127,7 +136,6 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   tip: {
-    flex: 1,
     alignItems: 'center',
     backgroundColor: '#EFEFEF',
     borderBottomRightRadius: 5,
