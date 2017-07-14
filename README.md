@@ -15,3 +15,8 @@ react-native start
 - Redux
 - NativeBase
 - Google Maps
+
+<p align="center">
+  <img width="300px" src="http://i.imgur.com/JZJ1dR3.jpg" alt="Screenshot 01"/>
+  <img width="300px" src="http://i.imgur.com/cBWYAs7.jpg" alt="Screenshot 02"/>
+</p>
